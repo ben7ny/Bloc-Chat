@@ -36,7 +36,7 @@ createRoom(e){
 
 deleteRoom(index){
   const deltRoom = this.state.rooms.filter( (room, i) => i !== index );
-   this.setState({ rooms: deltRoom });
+  this.setState({ rooms: deltRoom });
 }
 
 getNameChange(e) {
@@ -50,7 +50,7 @@ getNameChange(e) {
       <div className="myRoomList"> {this.state.rooms.map((room, index)=>
         <ul key={index}>
         <li>{room.name}</li>
-        <li><button onClick={()=>this.deleteRoom(index)}>Remmove Room</button></li>
+        <li><button onClick={()=>this.deleteRoom(index)}>Remove Room</button></li>
         </ul>
       )}
       <div>
