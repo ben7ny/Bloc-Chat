@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 
 
@@ -36,6 +37,7 @@ createRoom(e){
 
 deleteRoom(index){
   const deltRoom = this.state.rooms.filter( (room, i) => i !== index );
+  // this.roomsRef.remove();
   this.setState({ rooms: deltRoom });
 }
 
