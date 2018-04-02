@@ -21,11 +21,33 @@ import './App.css';
 
 
 class App extends Component {
+  constructor(props){
+  super(props);
+  this.state = {
+    ActiveRoom:''
+  };
+}
+
+selectRoom(room){
+  console.log(room);
+   this.setState({ActiveRoom: room});
+}
+
+
+
+
   render() {
     return (
       <div className="App">
-        <RoomList firebase={firebase} />
-        <MessageList />
+        <h1>Bloc Chat</h1>
+        <table>
+          <tbody>
+            <tr>
+              <td><RoomList firebase={firebase} selectRoom={this.selectRoom.bind(this)}/></td>
+              <td><MessageList firebase={firebase} ActiveRoom={this.state.ActiveRoom}/></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     );
   }
