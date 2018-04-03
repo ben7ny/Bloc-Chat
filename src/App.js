@@ -29,8 +29,8 @@ class App extends Component {
 }
 
 selectRoom(room){
-  console.log(room);
-   this.setState({ActiveRoom: room});
+  console.log(room.key);
+   this.setState({ActiveRoom: room.key});
 }
 
 
