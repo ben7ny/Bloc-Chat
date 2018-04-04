@@ -9,8 +9,7 @@ class MessageList extends Component{
      content: '',
      username: '',
      sentAt: '',
-     roomId:'',
-     activeRoom: this.props.activeRoom
+     roomId:''
    };
 
    this.messageRef = this.props.firebase.database().ref('messages');
@@ -29,7 +28,12 @@ class MessageList extends Component{
 
   getMessageChange(e){
 
-this.setState({ content:  e.target.value });
+// this.setState({ content:  e.target.value });
+this.setState({
+               // username: this.props.user,
+               content: e.target.value,
+               sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
+               roomId: this.props.activeRoom});
 
   }
 
@@ -51,7 +55,7 @@ this.setState({ content:  e.target.value });
     render(){
       return(
         <div className="messageParts">
-        <h2>Active Room:{this.state.activeRoom.name}</h2>
+        <h2>Active Room:{this.props.activeRoom.name}</h2>
         <div className="messageList">{this.state.messages.map((message, index)=>
           <ul key={index}>
           <li>{message.content}</li>
