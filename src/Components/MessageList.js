@@ -5,14 +5,15 @@ class MessageList extends Component{
   constructor(props){
    super(props);
    this.state = {
-     message: [],
+     messages: [],
      content: '',
      username: '',
      sentAt: '',
-     roomId:''
+     roomId:'',
+     activeRoom: this.props.activeRoom
    };
 
-   this.roomsRef = this.props.firebase.database().ref('message');
+   this.messageRef = this.props.firebase.database().ref('messages');
 
   }
 
@@ -40,7 +41,7 @@ this.setState({ content:  e.target.value });
       console.log(snapshot);
       const message = snapshot.val();
       message.key = snapshot.key;
-      this.setState({ message: this.state.message.concat( message ) })
+      this.setState({ messages: this.state.messages.concat( message ) })
     });
   }
 
@@ -50,8 +51,8 @@ this.setState({ content:  e.target.value });
     render(){
       return(
         <div className="messageParts">
-        <h2>Active Room:{this.props.ActiveRoom.name}</h2>
-        <div className="messageList">{this.state.message.map((message, index)=>
+        <h2>Active Room:{this.state.activeRoom.name}</h2>
+        <div className="messageList">{this.state.messages.map((message, index)=>
           <ul key={index}>
           <li>{message.content}</li>
           </ul>
@@ -66,6 +67,18 @@ this.setState({ content:  e.target.value });
             <input type="submit" value="Send Message"/>
           </form>
         </section>
+
+
+        {
+        // <section className="messageForm">
+        //   <form className="newMessage" onSubmit={(e) => this.creatNewMessage(e)}>
+        //
+        //       <textarea  placeholder="Write Your Message" value={this.state.message} onChange={(e)=>this.getMessageChange(e)}> </textarea>
+        //
+        //     <input type="submit" value="Send Message"/>
+        //   </form>
+        // </section>
+        }
         </div>
 
     );
