@@ -30,7 +30,7 @@ class MessageList extends Component{
 
 // this.setState({ content:  e.target.value });
 this.setState({
-               // username: this.props.user,
+               username: this.props.user,
                content: e.target.value,
                sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
                roomId: this.props.activeRoom});
