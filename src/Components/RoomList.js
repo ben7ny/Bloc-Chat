@@ -23,6 +23,10 @@ class RoomList extends Component {
       room.key = snapshot.key;
       this.setState({ rooms: this.state.rooms.concat( room ) })
     });
+    this.roomsRef.on('child_removed', snapshot => {
+      const deltRoom = this.state.rooms.filter( (room, i) => room.key !== snapshot.key);
+      this.setState({ rooms: deltRoom })
+    });
   }
 
 
@@ -32,11 +36,16 @@ createRoom(e){
   this.roomsRef.push({
   name: newRoomName
 });
+this.setState({newRoomName: ''})
 }
 
-deleteRoom(index){
-  const deltRoom = this.state.rooms.filter( (room, i) => i !== index );
-  this.setState({ rooms: deltRoom });
+deleteRoom(room){
+  //const deltRoom = this.state.rooms.filter( (room, i) => i !== index);
+  //console.log(index);
+  //console.log(deltRoom);
+
+  this.roomsRef.child(room.key).remove();
+  //this.setState({ rooms: deltRoom });
 }
 
 getNameChange(e) {
@@ -49,18 +58,16 @@ getNameChange(e) {
     return (
       <div className="myRoomList"> {this.state.rooms.map((room, index)=>
         <ul key={index}>
-        <li>{room.name}</li>
-        <li><button onClick={()=>this.deleteRoom(index)}>Remove Room</button></li>
+        <li onClick={ (e) => this.props.selectRoom(room)}><h1>{room.name}</h1></li>
+        <li><button onClick={(e)=>this.deleteRoom(room)}>Remove Room</button></li>
         </ul>
       )}
       <div>
-        <form className="NewRoomCreated" onSubmit={ (e) =>this.createRoom(e)}>
-          <label> Enter New Room Name:
-          <input type="text" placeholder="Type New Room Name" value={this.state.newRoomName} onChange={ (e) => this.getNameChange(e) }/>
-          </label>
-
-          <input type="submit" value="Create Room" />
-
+          <form className="NewRoomCreated" onSubmit={ (e) =>this.createRoom(e)}>
+            <label> Enter New Room Name:
+            <input type="text" placeholder="Type New Room Name" value={this.state.newRoomName} onChange={ (e) => this.getNameChange(e) }/>
+            </label>
+            <input type="submit" value="Create Room" />
         </form>
        </div>
       </div>

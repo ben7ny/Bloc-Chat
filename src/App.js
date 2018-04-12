@@ -25,28 +25,39 @@ class App extends Component {
   constructor(props){
   super(props);
   this.state = {
-    activeRoom:''
+    activeRoom:'',
+    user: 'Guest'
   };
 }
 
 selectRoom(room){
-  console.log(room.key);
-   this.setState({activeRoom: room.key});
+  console.log(room);
+   this.setState({activeRoom: room});
+}
+
+
+
+setUser(user) {
+    this.setState ({user: user});
 }
 
 
 
 
   render() {
+    const showMessages = this.state.activeRoom !== '' ? 'shown' : 'hidden';
+    const currentUser = this.state.user === null ? 'Guest' : this.state.user.displayName;
     return (
       <div className="App">
-        <h1>Bloc Chat</h1>
+        <h1 className='app-name'>Bloc Chat</h1>
         <table>
           <tbody>
             <tr>
               <td><RoomList firebase={firebase} selectRoom={this.selectRoom.bind(this)}/></td>
-              // <td><MessageList firebase={firebase} activeRoom={this.state.activeRoom}/></td>
-              <td><User /></td>
+              <td className={showMessages}>
+                <MessageList firebase={firebase} activeRoom={this.state.activeRoom}/>)
+              </td>
+              <td><User firebase={firebase} setUser={this.setUser.bind(this)} currentUser={currentUser}/> </td>
             </tr>
           </tbody>
         </table>
