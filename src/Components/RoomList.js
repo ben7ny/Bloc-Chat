@@ -56,20 +56,24 @@ getNameChange(e) {
 
   render() {
     return (
-      <div className="myRoomList"> {this.state.rooms.map((room, index)=>
-        <ul key={index}>
-        <li onClick={ (e) => this.props.selectRoom(room)}><h1>{room.name}</h1></li>
-        <li><button onClick={(e)=>this.deleteRoom(room)}>Remove Room</button></li>
-        </ul>
-      )}
-      <div>
-          <form className="NewRoomCreated" onSubmit={ (e) =>this.createRoom(e)}>
-            <label> Enter New Room Name:
-            <input type="text" placeholder="Type New Room Name" value={this.state.newRoomName} onChange={ (e) => this.getNameChange(e) }/>
-            </label>
-            <input type="submit" value="Create Room" />
-        </form>
-       </div>
+      <div className='roomListPart'>
+        <div>
+           <h1 className='app-name'>Bloc Chat</h1>
+
+         </div>
+          <div className="myRoomList"> {this.state.rooms.map((room, index)=>
+            <ul key={index}>
+              <li onClick= { (e) => this.props.selectRoom(room)}><h2>{room.name}</h2></li>
+              <li><button onClick={(e)=>this.deleteRoom(room)}>Remove Room</button></li>
+            </ul>
+          )}
+         </div>
+         <form className="NewRoomCreated" onSubmit={ (e) =>this.createRoom(e)}>
+           <label> Enter New Room Name:
+           <input type="text" placeholder="New Room Name" value={this.state.newRoomName} onChange={ (e) => this.getNameChange(e) }/>
+           </label>
+           <input type="submit" value="Create Room" />
+       </form>
       </div>
     );
   }

@@ -33,10 +33,10 @@ signOut(e) {
 
 render(){
    return(
-     <div>
-        <h1> User: Hello, {this.props.currentUser}. Welcome to Bloc-Chat!</h1>
-        <button onClick={this.signIn.bind(this)}>Login With Google</button>
-        <button onClick={this.signOut.bind(this)}>Log out</button>
+     <div className='userPart'>
+        <h1>Hello, {this.props.currentUser}. Welcome to Bloc-Chat!</h1>
+        <button className='LogIn' onClick={this.signIn.bind(this)}>Login With Google</button>
+        <button className='logOut' onClick={this.signOut.bind(this)}>Log out</button>
      </div>
 
   );

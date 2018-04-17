@@ -49,18 +49,16 @@ setUser(user) {
     const currentUser = this.state.user === null ? 'Guest' : this.state.user.displayName;
     return (
       <div className="App">
-        <h1 className='app-name'>Bloc Chat</h1>
-        <table>
-          <tbody>
-            <tr>
-              <td><RoomList firebase={firebase} selectRoom={this.selectRoom.bind(this)}/></td>
-              <td className={showMessages}>
-                <MessageList firebase={firebase} activeRoom={this.state.activeRoom}/>)
-              </td>
-              <td><User firebase={firebase} setUser={this.setUser.bind(this)} currentUser={currentUser}/> </td>
-            </tr>
-          </tbody>
-        </table>
+        <div className='rooms'>
+
+          <div><RoomList firebase={firebase} selectRoom={this.selectRoom.bind(this)}/></div>
+         </div>
+         <div className='messages'>
+            <div className={showMessages}>
+              <div><User firebase={firebase} setUser={this.setUser.bind(this)} currentUser={currentUser}/> </div>
+              <MessageList firebase={firebase} activeRoom={this.state.activeRoom}/>
+            </div>
+         </div>
       </div>
     );
   }
