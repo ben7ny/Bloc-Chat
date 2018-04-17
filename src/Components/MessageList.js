@@ -80,17 +80,6 @@ class MessageList extends Component{
       </form>
       </section>
 
-
-      {
-        // <section className="messageForm">
-        //   <form className="newMessage" onSubmit={(e) => this.creatNewMessage(e)}>
-        //
-        //       <textarea  placeholder="Write Your Message" value={this.state.message} onChange={(e)=>this.getMessageChange(e)}> </textarea>
-        //
-        //     <input type="submit" value="Send Message"/>
-        //   </form>
-        // </section>
-      }
       </div>
 
     );
