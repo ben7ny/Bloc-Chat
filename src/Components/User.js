@@ -16,6 +16,9 @@ class User extends Component {
 
 
 
+
+
+
   signIn(e) {
     const provider = new this.props.firebase.auth.GoogleAuthProvider();
     this.props.firebase.auth().signInWithPopup( provider );
@@ -34,7 +37,7 @@ signOut(e) {
 render(){
    return(
      <div className='userPart'>
-        <h1>Hello, {this.props.currentUser}. Welcome to Bloc-Chat!</h1>
+        <h1>Hello, {this.props.currentUser} Welcome to Bloc-Chat!</h1>
         <button className='LogIn' onClick={this.signIn.bind(this)}>Login With Google</button>
         <button className='logOut' onClick={this.signOut.bind(this)}>Log out</button>
      </div>
