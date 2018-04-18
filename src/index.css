@@ -110,6 +110,13 @@ h1.app-name {
   background-color: lightgray;
 }
 
+
+.messageList ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+}
+
 .messageForm input[type=text] {
   width: 70%;
   margin-top: 0.7rem;

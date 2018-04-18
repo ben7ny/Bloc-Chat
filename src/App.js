@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import * as firebase from 'firebase';
 import RoomList from './Components/RoomList';
@@ -56,7 +55,7 @@ setUser(user) {
          <div className='messages'>
             <div className={showMessages}>
               <div><User firebase={firebase} setUser={this.setUser.bind(this)} currentUser={currentUser}/> </div>
-              <MessageList firebase={firebase} activeRoom={this.state.activeRoom}/>
+              <MessageList firebase={firebase} activeRoom={this.state.activeRoom} currentUser={currentUser}/>
             </div>
          </div>
       </div>
