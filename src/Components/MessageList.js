@@ -68,7 +68,7 @@ class MessageList extends Component{
   render(){
     return(
       <div className="messageParts">
-<<<<<<< HEAD
+
       <h2>Active Room:{this.props.activeRoom.name}</h2>
       <h3> USER:{this.props.currentUser}</h3>
       <div className="messageList">{this.state.activeMessages.map((message, index)=>
@@ -87,7 +87,7 @@ class MessageList extends Component{
       </form>
       </section>
 
-=======
+
         <h2>Active Room:{this.props.activeRoom.name}</h2>
         <div className="messageList">{this.state.activeMessages.map((message, index)=>
           <ul  key={index}>
@@ -106,7 +106,7 @@ class MessageList extends Component{
         <input type="submit" value="Send Message"/>
         </form>
         </section>
->>>>>>> BlocChat-AddUser
+
       </div>
 
     );
