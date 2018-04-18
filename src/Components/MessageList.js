@@ -29,6 +29,7 @@ class MessageList extends Component{
       sentAt: this.props.firebase.database.ServerValue.TIMESTAMP
     });
     this.setState({ content: ''});
+    // this.setState({ content: this.state.messages.concat( content) })
   }
 
 
@@ -40,7 +41,7 @@ class MessageList extends Component{
 
   updateActiveMessageList(activeRoom) {
     if(!activeRoom) {return};
-    this.setState({activeMessages: this.state.messages.filter(message => message.roomId === activeRoom.key)})
+    this.setState({messages: this.state.messages.filter(message => message.roomId === activeRoom.key)})
   }
 
 
@@ -63,13 +64,16 @@ class MessageList extends Component{
   render(){
     return(
       <div className="messageParts">
+
+
         <h2>Active Room:{this.props.activeRoom.name}</h2>
-        <div className="messageList">{this.state.activeMessages.map((message, index)=>
+        <div className="messageList">{this.state.messages.map((message, index)=>
           <ul  key={index}>
-          <li><h3>USER:{message.username}</h3></li>
+          <li><h3>User:{message.username}</h3></li>
           <li>time:{message.sentAt}</li>
           <li>{message.content}</li>
           </ul>
+
         )}
 
         </div>
