@@ -12,8 +12,7 @@ class MessageList extends Component{
         roomId: ''
       }],
       activeMessages: [],
-      content: '',
-      activeRoom: ''
+      content: ''
     };
 
     this.messageRef = this.props.firebase.database().ref('messages');
@@ -40,15 +39,12 @@ class MessageList extends Component{
   }
 
   updateActiveMessageList(activeRoom) {
-    console.log('activeRoom', activeRoom)
     if(!activeRoom) {return};
     this.setState({activeMessages: this.state.messages.filter(message => message.roomId === activeRoom.key)})
   }
 
 
   componentWillReceiveProps(nextProps) {
-    console.log('nextProps', nextProps.activeRoom)
-    this.setState({activeRoom: nextProps.activeRoom})
     this.updateActiveMessageList(nextProps.activeRoom);
   }
 
@@ -58,7 +54,6 @@ class MessageList extends Component{
       const message = snapshot.val();
       message.key = snapshot.key;
       this.setState({ messages: this.state.messages.concat( message ) })
-      this.updateActiveMessageList(this.state.activeRoom);
     });
   }
 
@@ -68,26 +63,6 @@ class MessageList extends Component{
   render(){
     return(
       <div className="messageParts">
-
-      <h2>Active Room:{this.props.activeRoom.name}</h2>
-      <h3> USER:{this.props.currentUser}</h3>
-      <div className="messageList">{this.state.activeMessages.map((message, index)=>
-        <ul key={index}>
-        <li>{message.content}</li>
-        </ul>
-      )}
-
-      </div>
-      <section className="messageForm">
-      <form className="newMessage" onSubmit={(e) => this.createNewMessage(e)}>
-      <label>
-      <input type="text" placeholder="Write Your Message" value={this.state.content} onChange={(e)=>this.getMessageChange(e)}/>
-      </label>
-      <input type="submit" value="Send Message"/>
-      </form>
-      </section>
-
-
         <h2>Active Room:{this.props.activeRoom.name}</h2>
         <div className="messageList">{this.state.activeMessages.map((message, index)=>
           <ul  key={index}>
@@ -106,7 +81,6 @@ class MessageList extends Component{
         <input type="submit" value="Send Message"/>
         </form>
         </section>
-
       </div>
 
     );
