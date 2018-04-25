@@ -145,7 +145,7 @@ class MessageList extends Component{
       content: content,
       roomId: this.props.activeRoom.key,
       username: this.props.currentUser,
-      sentAt:  moment(this.props.firebase.database.ServerValue.TIMESTAMP).format('MMMM Do YYYY, h:mm:ss a')
+      sentAt: this.props.firebase.database.ServerValue.TIMESTAMP
     });
     this.setState({ content: ''});
   }
@@ -171,7 +171,7 @@ class MessageList extends Component{
     this.messageRef.on('child_added', snapshot => {
       const message = snapshot.val();
       message.key = snapshot.key;
-      this.setState({ messages: this.state.messages.concat( message ) })
+      this.setState({ messages: this.state.messages.concat( message ), activeMessages: this.state.activeMessages.concat( message ) })
     });
      // // let activeRoom = {this.props.activeRoom.name};
      //
@@ -180,7 +180,7 @@ class MessageList extends Component{
   }
 
 
-
+// <li>time:<Moment format='lll'>{message.sentAt}</Moment></li>
 
   render(){
     return(
