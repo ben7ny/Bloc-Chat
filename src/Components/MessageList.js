@@ -55,14 +55,9 @@ class MessageList extends Component{
       message.key = snapshot.key;
       this.setState({ messages: this.state.messages.concat( message ), activeMessages: this.state.activeMessages.concat( message ) })
     });
-     // // let activeRoom = {this.props.activeRoom.name};
-     //
-     //  this.updateActiveMessageList(this.props.activeRoom)
 
   }
 
-
-// <li>time:<Moment format='lll'>{message.sentAt}</Moment></li>
 
   render(){
     return(

@@ -40,12 +40,7 @@ this.setState({newRoomName: ''})
 }
 
 deleteRoom(room){
-  //const deltRoom = this.state.rooms.filter( (room, i) => i !== index);
-  //console.log(index);
-  //console.log(deltRoom);
-
   this.roomsRef.child(room.key).remove();
-  //this.setState({ rooms: deltRoom });
 }
 
 getNameChange(e) {
